@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dataset HTML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+</head>
+<body>
+    <div>
+        <p>Display Current Date and Time</p>
+        <button onclick="displayDateTime()">Display</button>
+        <div id="dateResults"></div>
+    </div>
+    <div>
+        <p>Convert Number into String</p>
+        <button onclick="numToString(15)">Display</button>
+        <div id="numOutput"></div>
+    </div>
+    <div>
+        <p>Convert String into Number</p>
+        <input type="text" id="string" value="">
+        <button onclick="stringToNum()">Convert</button>
+        <div id="stringOutput"></div>
+    </div>
+    <div>
+        <p>What datatype is this?</p>
+        <div id="dataOutput"></div>
+        <button onclick="randomDataType(undefined)">undefined</button>
+        <button onclick="randomDataType(32)">32</button>
+        <button onclick="randomDataType(null)">null</button>
+        <button onclick="randomDataType(true)">true</button>
+        <button onclick="randomDataType(false)">false</button>
+        <button onclick="randomDataType('string')">string</button>
+        <button onclick="randomDataType(NaN)">NaN</button>
+    </div>
+    <div>
+        <p>Add Two Number</p>
+        <input type="text" id="first_number" val="" placeholder="Numbers Only!">
+        <input type="text" id="second_number" val="" placeholder="Numbers Only!">
+        <button onclick="addTwoNumbers()">Add Numbers</button>
+        <div id="addOutput"></div>
+    </div>
+    <script src="datatypes.js"></script>
+</body>
+</html>
