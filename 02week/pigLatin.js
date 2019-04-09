@@ -10,8 +10,23 @@ const rl = readline.createInterface({
 
 function pigLatin(word) {
 
-  // Your code here
+  const vowelLetters = ['a', 'e', 'i', 'o', 'u'];
+  let trimmedWord = word.toLowerCase().trim().split("");
 
+  for (let i = 0; i < vowelLetters.length; i++) {
+    if (vowelLetters[i] == trimmedWord[0]) {
+      trimmedWord.push('y', 'a', 'y');
+      return trimmedWord.join("");
+    }
+  };
+
+  const findVowelIndex = (vow) => {
+    return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u";
+  }
+  let vowelIndex = trimmedWord.findIndex(findVowelIndex);
+  let vowelEnd = trimmedWord.splice(0, vowelIndex);
+  trimmedWord.push(vowelEnd.join(""), 'a', 'y');
+  return trimmedWord.join("");
 }
 
 
