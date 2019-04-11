@@ -12,21 +12,30 @@ function pigLatin(word) {
 
   const vowelLetters = ['a', 'e', 'i', 'o', 'u'];
   let trimmedWord = word.toLowerCase().trim().split("");
+  
+  const findSpace = (spc) => {
+    return spc == " ";
+  }
 
-  for (let i = 0; i < vowelLetters.length; i++) {
-    if (vowelLetters[i] == trimmedWord[0]) {
-      trimmedWord.push('y', 'a', 'y');
-      return trimmedWord.join("");
-    }
+  if (findSpace(trimmedWord) == true) {
+    // let wordTwoIndex = trimmedWord.findIndex(findSpace) {
+      console.log("you did it!")
   };
 
-  const findVowelIndex = (vow) => {
-    return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u";
-  }
-  let vowelIndex = trimmedWord.findIndex(findVowelIndex);
-  let vowelEnd = trimmedWord.splice(0, vowelIndex);
-  trimmedWord.push(vowelEnd.join(""), 'a', 'y');
-  return trimmedWord.join("");
+    for (let i = 0; i < vowelLetters.length; i++) {
+      if (vowelLetters[i] == trimmedWord[0]) {
+        trimmedWord.push('y', 'a', 'y');
+        return trimmedWord.join("");
+      }
+    };
+
+    const findVowelIndex = (vow) => {
+      return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u";
+    }
+    let vowelIndex = trimmedWord.findIndex(findVowelIndex);
+    let vowelEnd = trimmedWord.splice(0, vowelIndex);
+    trimmedWord.push(vowelEnd.join(""), 'a', 'y');
+    return trimmedWord.join("");
 }
 
 
@@ -58,6 +67,9 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin('HeLlO '), 'ellohay');
       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
+    it('should separate two words and run them together', () => {
+      assert.equal(pigLatin('Hop Fest'), 'Ophay Estfay');
+    })
   });
 } else {
 
