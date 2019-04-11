@@ -74,7 +74,7 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
     it('should separate two words and run them together', () => {
-      assert.equal(pigLatin('Hop Fest'), 'Ophay Estfay');
+      assert.equal(pigLatin('Hop Fest'), 'ophay estfay');
     })
   });
 } else {
