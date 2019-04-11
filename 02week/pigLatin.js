@@ -17,25 +17,31 @@ function pigLatin(word) {
     return spc == " ";
   }
 
-  if (findSpace(trimmedWord) == true) {
-    // let wordTwoIndex = trimmedWord.findIndex(findSpace) {
-      console.log("you did it!")
-  };
+  if (trimmedWord.findIndex(findSpace) !== -1) {
+    let wordTwoIndex = trimmedWord.findIndex(findSpace);
+    let secondWord = trimmedWord.splice(wordTwoIndex + 1);
+    let spaceElement = trimmedWord.splice(wordTwoIndex);
+    return changeWords(trimmedWord) + spaceElement + changeWords(secondWord);
+  } else {
+    return changeWords(trimmedWord);
+  }
 
+  function changeWords(val) {
     for (let i = 0; i < vowelLetters.length; i++) {
-      if (vowelLetters[i] == trimmedWord[0]) {
-        trimmedWord.push('y', 'a', 'y');
-        return trimmedWord.join("");
+      if (vowelLetters[i] == val[0]) {
+        val.push('y', 'a', 'y');
+        return val.join("");
       }
     };
 
     const findVowelIndex = (vow) => {
       return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u";
     }
-    let vowelIndex = trimmedWord.findIndex(findVowelIndex);
-    let vowelEnd = trimmedWord.splice(0, vowelIndex);
-    trimmedWord.push(vowelEnd.join(""), 'a', 'y');
-    return trimmedWord.join("");
+    let vowelIndex = val.findIndex(findVowelIndex);
+    let vowelEnd = val.splice(0, vowelIndex);
+    val.push(vowelEnd.join(""), 'a', 'y');
+    return val.join("");
+  }
 }
 
 
