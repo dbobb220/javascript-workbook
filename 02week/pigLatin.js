@@ -35,12 +35,18 @@ function pigLatin(word) {
     };
 
     const findVowelIndex = (vow) => {
-      return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u";
+      return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u" || vow == "y";
     }
-    let vowelIndex = val.findIndex(findVowelIndex);
-    let vowelEnd = val.splice(0, vowelIndex);
-    val.push(vowelEnd.join(""), 'a', 'y');
-    return val.join("");
+    if(val[0] == "y") {
+      val.shift();
+      val.push('y', 'a', 'y');
+      return val.join("");
+    } else {
+      let vowelIndex = val.findIndex(findVowelIndex);
+      let vowelEnd = val.splice(0, vowelIndex);
+      val.push(vowelEnd.join(""), 'a', 'y');
+      return val.join("");
+    }
   }
 }
 
