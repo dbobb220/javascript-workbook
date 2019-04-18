@@ -1,22 +1,23 @@
 "use strict;"
 
+// get input value and convert to array (lowercase, trim)
+// code will then run through the pigLatin function for each array value
+// the it will convert the pig latin array into a string and return to output via DOM
+
+let getInputValue = function() {
+  const pigLatinInput = document.querySelector("#input_pigLatin").value.toLowerCase().trim().split(" ");
+  console.log(pigLatinInput);
+  let newPigLatinArray = [];
+  for (let i = 0; i < pigLatinInput.length; i++) {
+    newPigLatinArray.push(pigLatin(pigLatinInput[i]));
+  }
+  document.querySelector(".output").innerHTML = newPigLatinArray.join(" ");
+}
+
 function pigLatin(word) {
 
     const vowelLetters = ['a', 'e', 'i', 'o', 'u'];
-    let trimmedWord = word.toLowerCase().trim().split("");
-  
-    const findSpace = (spc) => {
-      return spc == " ";
-    }
-  
-    if (trimmedWord.findIndex(findSpace) !== -1) {
-      let wordTwoIndex = trimmedWord.findIndex(findSpace);
-      let secondWord = trimmedWord.splice(wordTwoIndex + 1);
-      let spaceElement = trimmedWord.splice(wordTwoIndex);
-      return changeWords(trimmedWord) + spaceElement + changeWords(secondWord);
-    } else {
-      return changeWords(trimmedWord);
-    }
+    let trimmedWord = word.split("");
   
     function changeWords(val) {
       for (let i = 0; i < vowelLetters.length; i++) {
@@ -34,4 +35,6 @@ function pigLatin(word) {
       val.push(vowelEnd.join(""), 'a', 'y');
       return val.join("");
     }
+
+    return changeWords(trimmedWord);
   }

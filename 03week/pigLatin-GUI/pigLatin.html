@@ -11,13 +11,12 @@
     <header><h1>Pig Latin GUI</h1></header>
     <main>
         <section class="input">
-            <input id="input_piglatin" type="text" placeholder="Type your text here...">
-            <button id="submit" onclick="">Pig Latinify!</button>
+            <input id="input_pigLatin" type="text" placeholder="Type your text here..." value="This is my string of text">
+            <button id="submit" onclick="getInputValue();">Pig Latinify!</button>
             <button id="reset" onclick="">Reset</button>
         </section>
-        <section class="output">
-            <div></div>
-        </section>
+        <section class="output"></section>
     </main>
+    <script src="pigLatin.js"></script>
 </body>
 </html>
