@@ -51,3 +51,4 @@ function pigLatin(word) {
     document.querySelector("#input_pigLatin").value = "";
     document.querySelector(".output").innerHTML = "";
   }
+  
