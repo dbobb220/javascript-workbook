@@ -29,8 +29,24 @@ function getRandomInt(min, max) {
 }
 
 function generateHint(solution, guess) {
-  solutionArray = solution.split('');
-
+  let solutionArray = solution.split('');
+  let guessArray = guess.split('');
+  console.log(solutionArray, guessArray);
+  let correctLetterLocations = 0;
+  let correctLetters = 0;
+  for (let i = 0; i < solutionArray.length; i++) {
+    if (solutionArray[i] === guessArray[i]) {
+      correctLetterLocations += 1;
+      solutionArray[i] = null;
+    }
+  }
+  for (let j = 0; j < solutionArray.length; j++) {
+    let targetIndex = guessArray.indexOf(solutionArray[j]);
+    if (targetIndex > -1) {
+      correctLetters += 1;
+      solutionArray[j] = null;
+    };
+  }
 }
 
 function mastermind(guess) {
@@ -45,6 +61,7 @@ function mastermind(guess) {
 function getPrompt() {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
+    generateHint(solution, guess);
     printBoard();
     getPrompt();
   });
