@@ -24,23 +24,63 @@ function printBoard() {
 }
 
 function horizontalWin() {
-  // Your code here
+  for (let i = 0; i < board.length; i++) {
+    if (board[i][0] == 'X' && board[i][1] == 'X' && board[i][2] == 'X' ) {
+      console.log('X Wins');
+      return true;
+    } else if (board[i][0] == 'O' && board[i][1] == 'O' && board[i][2] == 'O' ) {
+      console.log('O Wins!');
+      return true;
+    }
+  }
 }
 
 function verticalWin() {
-  // Your code here
+  for (let i = 0; i < board.length; i++) {
+    if (board[0][i] === 'X' && board[1][i] === 'X' && board[2][i] === 'X') {
+      console.log('X Wins!');
+      return true;
+    } else if (board[0][i] === 'O' && board[1][i] === 'O' && board[2][i] === 'O') {
+      console.log('O Wins!');
+      return true;
+    }
+  }
 }
 
 function diagonalWin() {
-  // Your code here
+  if (board[0][0] === 'X' && board[1][1] === 'X' && board[2][2] === 'X') {
+    console.log('X Wins!');
+    return true;
+  } else if (board[2][0] === 'X' && board[1][1] === 'X' && board[0][2] === 'X') {
+    console.log('X Wins!');
+    return true;
+  } else if (board[0][0] === 'O' && board[1][1] === 'O' && board[2][2] === 'O') {
+    console.log('O Wins!');
+    return true;
+  } else if (board[2][0] === 'O' && board[1][1] === 'O' && board[0][2] === 'O') {
+    console.log('O Wins!');
+    return true;
+  }
 }
 
 function checkForWin() {
-  // Your code here
+  if(horizontalWin() === true || verticalWin() === true || diagonalWin() === true) {
+    return true;
+  }
 }
 
 function ticTacToe(row, column) {
-  // Your code here
+  if(board[row][column] === ' ') {
+    board[row][column] = playerTurn;
+    if(playerTurn === 'X') {
+      playerTurn = 'O';
+    } else {
+      playerTurn = 'X';
+    }
+    checkForWin();
+  } else {
+    return "space not available";
+  }
 }
 
 function getPrompt() {
@@ -74,8 +114,16 @@ if (typeof describe === 'function') {
       board = [ [' ', 'X', ' '], [' ', 'X', ' '], [' ', 'X', ' '] ];
       assert.equal(verticalWin(), true);
     });
-    it('should check for horizontal wins', () => {
+    it('should check for top line horizontal wins', () => {
       board = [ ['X', 'X', 'X'], [' ', ' ', ' '], [' ', ' ', ' '] ];
+      assert.equal(horizontalWin(), true);
+    });
+    it('should check for middle line horizontal wins', () => {
+      board = [ [' ', ' ', ' '], ['X', 'X', 'X'], [' ', ' ', ' '] ];
+      assert.equal(horizontalWin(), true);
+    });
+    it('should check for bottom line horizontal wins', () => {
+      board = [ [' ', ' ', ' '], [' ', ' ', ' '], ['X', 'X', 'X'] ];
       assert.equal(horizontalWin(), true);
     });
     it('should check for diagonal wins', () => {
