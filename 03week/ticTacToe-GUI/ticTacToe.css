@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    background: #e3e3e3;
+    font-family: Montserrat;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: orangered;
+    font-size: 3em;
+    color: #fff;
+}
+
+section.board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width:600px;
+    margin: 20px auto;
+}
+
+section.board div {
+    height: 200px;
+    border: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10em;
+}
+
+div#upper_left {
+    border-top: 0px;
+    border-left: 0px;}
+
+div#upper_middle {
+    border-top: 0px;
+}
+
+div#upper_right {
+    border-top: 0px;
+    border-right: 0px;
+}
+
+div#middle_left {
+    border-left: 0px;
+}
+
+div#middle_right {
+    border-right: 0px;
+}
+
+div#lower_left {
+    border-left: 0px;
+    border-bottom: 0px;
+}
+
+div#lower_middle {
+    border-bottom: 0px;
+}
+
+div#lower_right {
+    border-bottom: 0px;
+    border-right: 0px;
+}
+
+div {
+    -webkit-user-select: none;       
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+}
+
+#message_box {
+    height: 80px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+div#clear_button {
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 10px auto;
+    border: 2px solid #000;
+    color: #000;
+    background:transparent;
+    transition: .3s;
+}
+
+div#clear_button:hover {
+    padding: 10px 20px;
+    width: fit-content;
+    margin: 10px auto;
+    border: 2px solid #000;
+    color:#fff;
+    background: #000;
+}
