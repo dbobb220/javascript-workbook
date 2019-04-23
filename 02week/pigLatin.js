@@ -10,8 +10,44 @@ const rl = readline.createInterface({
 
 function pigLatin(word) {
 
-  // Your code here
+  const vowelLetters = ['a', 'e', 'i', 'o', 'u'];
+  let trimmedWord = word.toLowerCase().trim().split("");
+  
+  const findSpace = (spc) => {
+    return spc == " ";
+  }
 
+  if (trimmedWord.findIndex(findSpace) !== -1) {
+    let wordTwoIndex = trimmedWord.findIndex(findSpace);
+    let secondWord = trimmedWord.splice(wordTwoIndex + 1);
+    let spaceElement = trimmedWord.splice(wordTwoIndex);
+    return changeWords(trimmedWord) + spaceElement + changeWords(secondWord);
+  } else {
+    return changeWords(trimmedWord);
+  }
+
+  function changeWords(val) {
+    for (let i = 0; i < vowelLetters.length; i++) {
+      if (vowelLetters[i] == val[0]) {
+        val.push('y', 'a', 'y');
+        return val.join("");
+      }
+    };
+
+    const findVowelIndex = (vow) => {
+      return vow == "a" || vow == "e" || vow == "i" || vow == "o" || vow == "u" || vow == "y";
+    }
+    if(val[0] == "y") {
+      val.shift();
+      val.push('y', 'a', 'y');
+      return val.join("");
+    } else {
+      let vowelIndex = val.findIndex(findVowelIndex);
+      let vowelEnd = val.splice(0, vowelIndex);
+      val.push(vowelEnd.join(""), 'a', 'y');
+      return val.join("");
+    }
+  }
 }
 
 
@@ -43,6 +79,9 @@ if (typeof describe === 'function') {
       assert.equal(pigLatin('HeLlO '), 'ellohay');
       assert.equal(pigLatin(' RoCkEt'), 'ocketray');
     });
+    it('should separate two words and run them together', () => {
+      assert.equal(pigLatin('Hop Fest'), 'ophay estfay');
+    })
   });
 } else {
 
