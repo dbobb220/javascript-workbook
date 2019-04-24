@@ -53,39 +53,57 @@ function generateHint(solution, guess) {
 }
 
 function mastermind(guess) {
-  solution = 'abcd'; // Comment this out to generate a random solution
+  // solution = 'abcd'; // Comment this out to generate a random solution
+  //? Which of these loops would you recommend using? 
   let checkLetterSubmissions = guess.toLowerCase().split('');
-    // });
-  for (let z = 0; z < checkLetterSubmissions.length; z++) {
-    if (letters.indexOf(checkLetterSubmissions[z]) === -1) {
-      console.log('Only use letters a through h!');
-      return 'Only use letters a through h!';
-    }
-  }
-  //TODO: Simplify nested for loop
-  //? forEach doesn't respect return... How can I stop a forEach function when condition is met?
-  // checkLetterSubmissions.forEach(function(val) {
-  //   if (letters.indexOf(val) === -1) {
+  // for (let z = 0; z < checkLetterSubmissions.length; z++) {
+  //   if (letters.indexOf(checkLetterSubmissions[z]) === -1) {
   //     console.log('Only use letters a through h!');
   //     return 'Only use letters a through h!';
   //   }
-  if (guess.length !== 4) {
-    console.log('Use 4 letters only!');
+  // }
+  let lettersAreValid = true;
+  checkLetterSubmissions.forEach(function(val) {
+    if (letters.indexOf(val) === -1) {
+      lettersAreValid = false;
+    }
+  });
+  if(lettersAreValid === false) {
+    console.log(colors.yellow('Only use letters a through h!'));
+    return 'Only use letters a through h!';
+  } else if (guess.length !== 4) {
+    console.log(colors.yellow('Use 4 letters only!'));
     return 'Use 4 letters only!';
   } else if (guess == solution) {
-    console.log('You guessed it!');
+    console.log(colors.yellow('You guessed it!'));
     return 'You guessed it!';
   } else {
     generateHint(solution, guess);
     let hint = generateHint(solution, guess);
     board.push(guess.toString() + ' ' + hint.toString());
+    // console.log(board);
   }
 }
+
+const endGameChecker = () => {
+  if (board.length === 10) {
+    console.log(colors.yellow(`You ran out of turns! The solution was ${solution}`));
+    solution = '';
+    generateSolution();
+    board = [];
+    return `You ran out of turns! The solution was ${solution}`;
+  } else {
+    console.log(colors.yellow('Guess again.'));
+    return 'Guess again.';
+  }
+}
+
 
 function getPrompt() {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
     printBoard();
+    endGameChecker();
     getPrompt();
   });
 }
@@ -129,7 +147,27 @@ if (typeof describe === 'function') {
     });
   });
 
-} else {
+  describe('#endGameChecker', () => {
+    it('should end the game after 10 moves', () => {
+      board.length = 10;
+      assert.equal(endGameChecker(), `You ran out of turns! The solution was ${solution}`);
+    });
+    it('should return guess again before 10th guess', () => {
+      board.length = 5;
+      assert.equal(endGameChecker(), 'Guess again.');
+    });
+    //? how can I test board reset?
+    // it('should reset the board after 10 moves', () => {
+    //   board.length = 10;
+    //   assert.equal(endGameChecker(), board.length === 0);
+    // })
+    //? how can I test solution reset?
+  //   it('should reset the solution after 10 moves', () => {
+  //     solution = abcd;
+  //     assert.equal(endGameChecker(), solution != endGameChecker(solution));
+  //   })
+  });
+  } else {
 
   generateSolution();
   getPrompt();
