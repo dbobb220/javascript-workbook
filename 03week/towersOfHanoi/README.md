@@ -39,5 +39,6 @@
 - Then we need to check if `checkForWin()` is equal to `true`. If so log a message indicating the win. 
 
 ### Step 5: Create 3 additional tests for the code
-- check for legal move in towersOfHanoi function
-- check for legal submission - only a, b, or c *needs added logic/function*
+- check for illegal move in towersOfHanoi and console log message
+- let user know they won in console
+- check for win in stack c
