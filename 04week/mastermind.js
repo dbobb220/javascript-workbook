@@ -54,14 +54,7 @@ function generateHint(solution, guess) {
 
 function mastermind(guess) {
   // solution = 'abcd'; // Comment this out to generate a random solution
-  //? Which of these loops would you recommend using? 
   let checkLetterSubmissions = guess.toLowerCase().split('');
-  // for (let z = 0; z < checkLetterSubmissions.length; z++) {
-  //   if (letters.indexOf(checkLetterSubmissions[z]) === -1) {
-  //     console.log('Only use letters a through h!');
-  //     return 'Only use letters a through h!';
-  //   }
-  // }
   let lettersAreValid = true;
   checkLetterSubmissions.forEach(function(val) {
     if (letters.indexOf(val) === -1) {
@@ -130,13 +123,9 @@ if (typeof describe === 'function') {
 
   describe('#generateHint()', () => {
     it('should generate hints', () => {
-      //! test does not pass because only 1 argument
-      // assert.equal(generateHint('abdc'), '2-2');
       assert.equal(generateHint(solution, 'abdc'), '2-2');
     });
     it('should generate hints if solution has duplicates', () => {
-      //! test does not pass because only 1 argument
-      // assert.equal(generateHint('aabb'), '1-1');
       assert.equal(generateHint(solution, 'aabb'), '1-1');
     });
     it('should display the correct number of correctly located letters', () => {
