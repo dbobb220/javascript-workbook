@@ -10,7 +10,7 @@ let jobTypes = {
 };
 
 class CrewMember {
-  constructor (name, job, specialSkill, ship) {
+  constructor (name, job, specialSkill) {
     this.name = name;
     this.job = job;
     this.specialSkill = specialSkill;
@@ -23,7 +23,7 @@ class CrewMember {
 
 
 class Ship {
-  constructor (name, type, ability, crew) {
+  constructor (name, type, ability) {
     this.name = name;
     this.type = type;
     this.ability = ability;
