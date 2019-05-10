@@ -84,13 +84,16 @@ const weather = [
     visibility: 11.14056410562316,
     predictability: 71
   },
-],
+]
 
-//using a higher order function, create an array of the unique 'weather_state_name' values of the weather array. Your function should return the following array ['Light Cloud', 'Heavy Cloud', 'Showers']
-const weatherStates = 
+// using a higher order function, create an array of the unique 'weather_state_name' values of the weather array. Your function should return the following array ['Light Cloud', 'Heavy Cloud', 'Showers']
+
+// map a new array for weather name, then filter leftover values that match the index of the first instance
+const weatherStates = weather.map(val => val.weather_state_name).filter((val, idx, arr) => arr.indexOf(val) === idx);
 console.log(weatherStates)
 
 //find the id of the object in weather that has a min_temp of 15.915
 
-const idealTemp =
+// 
+const idealTemp = weather.find((val) => val.min_temp === 15.915).id;
 console.log(idealTemp)
